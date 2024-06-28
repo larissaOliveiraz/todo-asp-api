@@ -1,7 +1,17 @@
 ﻿namespace Todo.Domain.Entities
 {
-    public abstract class Entity(Guid id)
+    public abstract class Entity: IEquatable<Entity>
     {
-        public Guid Id { get; private set; } = id;
+        protected Entity()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        private Guid Id { get; set; }
+
+        public bool Equals(Entity? other)
+        {
+            return Id == other?.Id;
+        }
     }    
 }
